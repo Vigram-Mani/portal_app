@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     fontWeight: FontWeight.bold,
     fontSize: 16,
   );
+  final String profile = "Profile";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -151,128 +152,36 @@ class _HomePageState extends State<HomePage> {
                 ),
                 border: Border.all(color: Colors.white, width: 5),
               ),
-              child: Column(
+              child: const Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            (context),
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset('images/profile.png'),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Profile",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      HomeIcon(
+                        imageName: "profile",
+                        screenName: ProfilePage(),
+                        description: "Profile",
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            (context),
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset('images/attendance.png'),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Attendace",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      )
+                      HomeIcon(
+                        screenName: ProfilePage(),
+                        imageName: "attendance",
+                        description: "Attendance",
+                      ),
                     ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            (context),
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset('images/Marks.png'),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Marks",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                      HomeIcon(
+                        screenName: ProfilePage(),
+                        imageName: "Marks",
+                        description: "Marks",
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            (context),
-                            MaterialPageRoute(
-                              builder: (context) => ProfilePage(),
-                            ),
-                          );
-                        },
-                        child: Column(
-                          children: [
-                            Image.asset('images/Notes.png'),
-                            const Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Notes",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
+                      HomeIcon(
+                        screenName: ProfilePage(),
+                        imageName: "Notes",
+                        description: "Notes",
                       )
                     ],
                   ),
@@ -281,6 +190,50 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class HomeIcon extends StatelessWidget {
+  const HomeIcon({
+    super.key,
+    required this.screenName,
+    required this.imageName,
+    required this.description,
+  });
+
+  final screenName;
+  final imageName;
+  final description;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          (context),
+          MaterialPageRoute(
+            builder: (context) => screenName,
+          ),
+        );
+      },
+      child: Column(
+        children: [
+          Image.asset('images/$imageName.png'),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "$description",
+              style: const TextStyle(
+                color: Colors.white,
+                decoration: TextDecoration.underline,
+                decorationColor: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
